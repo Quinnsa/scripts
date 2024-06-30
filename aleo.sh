@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo systemctl stop ceremonyclient
 sudo rm -rf ~/aleo
 
 if [ "$(id -u)" != "0" ]; then
