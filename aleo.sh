@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo rm -rf ~/aleo
+
 if [ "$(id -u)" != "0" ]; then
     echo "此脚本需要以root用户权限运行。"
     echo "请尝试使用 'sudo -i' 命令切换到root用户，然后再次运行此脚本。"
@@ -50,8 +52,7 @@ if [[ $1 == "install" ]]; then
         worker_name=$2
     else
         ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
-        miner_name=${ip//\./\_}
-        worker_name=$(get_miner_name)
+        worker_name=${ip//\./\_}
     fi
     echo $worker_name
     install_and_run_aleo $work_name
