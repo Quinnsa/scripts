@@ -49,7 +49,11 @@ function stop_aleo(){
 if [[ $1 == "install" ]]; then
 
     if [ "$2" ]; then
-        worker_name=$2
+        if [[ $2 == 'hostname' ]];then
+            worker_name=$(hostname)
+        else
+            worker_name=$2
+        fi
     else
         ip=$(ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d '/' -f 1)
         worker_name=${ip//\./\_}
