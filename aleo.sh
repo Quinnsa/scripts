@@ -51,7 +51,7 @@ if [[ $1 == "install" ]]; then
     if [ "$2" ]; then
         worker_name=$2
     else
-        ip=$(dig +short myip.opendns.com @resolver1.opendns.com)
+        ip=$(ip addr show eth0 | grep 'inet ' | awk '{print $2}' | cut -d '/' -f 1)
         worker_name=${ip//\./\_}
     fi
     echo $worker_name
